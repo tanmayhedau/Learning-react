@@ -1,17 +1,21 @@
-import React from "react";
 import "./App.css";
-import User from "./User";
-import Student from './Student';
 
-const App = () => {
-  function getData() {
-    alert("hello from app component");
+import React, { Component } from "react";
+
+export default class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "tanmay lumaji hedau",
+    };
+    console.warn("constructor");
   }
-  return (
-    <div className="App">
-      <User data={getData} />
-      <Student data={getData} />
-    </div>
-  );
-};
-export default App;
+  render() {
+    console.warn("render");
+    return (
+      <div>
+        <h1>Hello world {this.state.name}</h1>
+      </div>
+    );
+  }
+}
