@@ -1,13 +1,17 @@
 import React from "react";
 import "./App.css";
-import Login from "./Login";
-
+import User from "./User";
+import Student from './Student';
 
 const App = () => {
+  function getData() {
+    alert("hello from app component");
+  }
   return (
     <div className="App">
-      <Login/>
+      <User data={getData} />
+      <Student data={getData} />
     </div>
-  )
+  );
 };
 export default App;

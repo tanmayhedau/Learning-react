@@ -1,10 +1,10 @@
-function Student(props) {
+function User(props) {
   return (
     <div>
-      <h1>Student component</h1>
+      <h1>User component</h1>
       <button onClick={props.data}>Call function</button>
     </div>
   );
 }
 
-export default Student;
+export default User;
