@@ -1,22 +1,26 @@
+import { func } from "prop-types";
+import React, { useState } from "react";
 import "./App.css";
 import Header from "./components/Header";
-import Movie from "./components/Movie";
-import movies from "./movie.json";
 
 function App() {
+
+  const [num,setNum] = useState(1);
+  function inc(){
+    setNum(num+1)
+  }
+
+  function dec(){
+    setNum(num-1)
+  }
+
   return (
     <div className="App">
-      <Header />
+      <Header /> 
       <div className="main">
-        {movies.map((ele) => {
-          return ( 
-          <Movie 
-            title={ele.Title} 
-            year={ele.Year} 
-            img={ele.Poster} 
-          />
-          )
-        })}
+        <h1 className="heading">{num}</h1>
+        <button className="btn" onClick={inc}>increment</button>
+        <button className="btn" onClick={dec}>decrement</button>
       </div>
     </div>
   );
