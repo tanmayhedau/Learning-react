@@ -1,39 +1,28 @@
-import React, { useState, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
+import Home from "./components/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Contact from "./components/Contact";
+import About from "./components/About";
+import Error from "./components/Error";
 
 function App() {
-  const [state, setState] = useState(2);
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    async function getData() {
-      const get = await fetch(
-        `https://hub.dummyapis.com/employee?noofRecords=${state}&idStarts=1001`
-      );
-
-      const res = await get.json();
-      setData(res);
-      console.log(res);
-    }
-    getData();
-    document.title = `(${state}) Employees online`
-  }, [state]);
-
   return (
-    <div className="App">
-      <Header />
-      <button onClick={() => setState(state + 1)}>Click me {state}</button>
-      {data.map((ele, index) => {
-        return (
-          <div className="data" key={index}>
-            <h4>{ele.firstName}</h4>
-            <h4>{ele.lastName}</h4>
-            <h4>{ele.email}</h4>
-          </div>
-        );
-      })}
-    </div>
+    <Router>
+      <div className="App">
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+
+          <Route path="/about" element={<About />} />
+
+          <Route path="/contact" element={<Contact />} />
+
+          <Route path="*" element={<Error />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
