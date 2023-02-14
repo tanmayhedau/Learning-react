@@ -1,18 +1,26 @@
 import "../App.css";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
 
 const Header = () => {
+  const navLinkStyles = ({ isActive }) => {
+    return {
+      TextDecoration: isActive ? "none" : "underline",
+      color: isActive ? "red" : "white",
+      fontSize: "30px",
+    };
+  };
   return (
     <div className="header">
-      <Link to={"/"}>
-        <h1>HOME </h1>
-      </Link>
-      <Link to={"/about"}>
-        <h1>ABOUT </h1>
-      </Link>
-      <Link to={"/contact"}>
-        <h1>CONTACT </h1>
-      </Link>
+      <NavLink style={navLinkStyles} to={"/app"}>
+        home
+      </NavLink>
+      <NavLink style={navLinkStyles} to={"/about"}>
+        about
+      </NavLink>
+      <NavLink style={navLinkStyles} to={"/contact"}>
+        contact
+      </NavLink>
     </div>
   );
 };

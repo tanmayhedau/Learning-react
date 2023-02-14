@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [state, setState] = useState(2);
@@ -22,13 +23,16 @@ const Home = () => {
       <button onClick={() => setState(state + 1)}>Click me {state}</button>
       {data.map((ele, index) => {
         return (
-          <div className="data" key={index}>
-            <h4>{ele.firstName}</h4>
-            <h4>{ele.lastName}</h4>
-            <h4>{ele.email}</h4>
-          </div>
+          <Link to={`/app/${ele.id}`}>
+            <div className="data" key={index}>
+              <h4>{ele.firstName}</h4>
+              <h4>{ele.lastName}</h4>
+              <h4>{ele.email}</h4>
+            </div>
+          </Link>
         );
       })}
+      
     </div>
   );
 };
