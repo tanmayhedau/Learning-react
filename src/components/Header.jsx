@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <>
       <div className="header">
-        <h1>React Context API</h1>
+        <h1>useRef Hook</h1>
       </div>
     </>
   );
