@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <>
       <div className="header">
-        <h1>useRef Hook</h1>
+        <h1>Custom Hook</h1>
       </div>
     </>
   );

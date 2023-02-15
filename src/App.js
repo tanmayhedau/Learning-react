@@ -1,27 +1,18 @@
-import { useReducer } from "react";
 import "./App.css";
 import Header from "./components/Header";
-
-const reducer = (state, action) => {
-  if (action.type === "INC") {
-    return state + 2;
-  } else if (action.type === "DEC") {
-    return state - 2;
-  } else if (action.type === "MUL") {
-    return state * 2;
-  }
-  return state;
-};
+import useFetch from "./components/useFetch";
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, 0);
+  const [data] = useFetch(
+    "https://hub.dummyapis.com/employee?noofRecords=10&idStarts=1001"
+  );
+
   return (
     <div className="App">
       <Header />
-      <h1>{state}</h1>
-      <button onClick={() => dispatch({ type: "INC" })}>increment</button>
-      <button onClick={() => dispatch({ type: "DEC" })}>decrement</button>
-      <button onClick={() => dispatch({ type: "MUL" })}>multipy</button>
+      {data.map((ele, index) => {
+        return <h1 key={index}>{ele.firstName}</h1>;
+      })}
     </div>
   );
 }
