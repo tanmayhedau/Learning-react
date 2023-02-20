@@ -1,46 +1,29 @@
-import "./App.css";
-import Header from "./components/Header";
-import { useEffect, useState } from "react";
-import { Dna } from "react-loader-spinner";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import React from "react";
 
-function App() {
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState([]);
+class App extends React.Component {
+  constructor(props) {
+    super();
 
-  useEffect(() => {
-    setLoading(true);
+    this.state = {
+      count: 0,
+    };
 
-    async function getData() {
-      const res = await fetch(
-        "https://hub.dummyapis.com/employee?noofRecords=1000&idStarts=1001"
-      );
-      const final = await res.json();
-      setData(final);
-      console.log(final);
-      setLoading(false);
-      toast.success("success");
-    }
+    this.inc = this.inc.bind(this);
+  }
 
-    getData();
-  }, []);
+  inc() {
+    this.setState((prevState) => ({ count: prevState.count + 1 }));
+  }
 
-  return (
-    <div className="App">
-      <Header />
-      <ToastContainer />
-      <div className="main">
-        {loading ? (
-          <Dna />
-        ) : (
-          data.map((e, i) => {
-            return <p>{e.email}</p>;
-          })
-        )}
+  render() {
+    return (
+      <div>
+        <h1>Class component</h1>
+        <h1>{this.state.count}</h1>
+        <button onClick={this.inc}>button</button>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
