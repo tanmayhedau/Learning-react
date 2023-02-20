@@ -1,29 +1,44 @@
 import "./App.css";
 import Header from "./components/Header";
-import { useState, useCallback } from "react";
-import Todos from "./components/Todos";
+import { useEffect, useState } from "react";
+import { Dna } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
 
-  const increment = () => {
-    setCount((c) => c + 1);
-  };
+  useEffect(() => {
+    setLoading(true);
 
-  const addTodo = useCallback(() => {
-    setTodos((t) => [...t, "new todo"]);
-  },[todos]);
+    async function getData() {
+      const res = await fetch(
+        "https://hub.dummyapis.com/employee?noofRecords=1000&idStarts=1001"
+      );
+      const final = await res.json();
+      setData(final);
+      console.log(final);
+      setLoading(false);
+      toast.success("success");
+    }
+
+    getData();
+  }, []);
 
   return (
     <div className="App">
       <Header />
-      <div>
-        Count:{count}
-        <button onClick={increment}>+</button>
+      <ToastContainer />
+      <div className="main">
+        {loading ? (
+          <Dna />
+        ) : (
+          data.map((e, i) => {
+            return <p>{e.email}</p>;
+          })
+        )}
       </div>
-      <hr />
-      <Todos todos={todos} addTodo={addTodo} />
     </div>
   );
 }

@@ -49,3 +49,12 @@ body {
   padding: 5px;
   margin: 8px;
 }
+
+.main{
+  width: 100vw;
+  min-height: 200px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

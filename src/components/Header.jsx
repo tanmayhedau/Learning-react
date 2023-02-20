@@ -1,10 +1,11 @@
 import React from "react";
 
 const Header = () => {
+  
   return (
     <>
       <div className="header">
-        <h1>useCallback Hook</h1>
+        <h1>Web3Mantra</h1>
       </div>
     </>
   );
